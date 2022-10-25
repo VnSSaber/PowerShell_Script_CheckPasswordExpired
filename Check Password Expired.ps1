@@ -8,8 +8,8 @@ $Report = $ReportPath + "PasswordExpiredReport_" + $ReportDate + ".txt"
 New-Item -path $Report -type File
 
 foreach ($user in $users) {
-"Checking user: $user" | out-file $Report -Append						          #Notify user checked
-net user $user /domain | select-string 'Account active' >> $Report		#Obtain user information using net user, select only Account Active
-net user $user /domain | select-string 'Password expires' >> $Report 	#Obtain user information using net user, select only Password Expired
-Start-Sleep -Second 3 													                      #Pause to let system gather information
+"Checking user: $user" | out-file $Report -Append #Notify user checked
+net user $user /domain | select-string 'Account active' >> $Report #Obtain user information using net user, select only Account Active
+net user $user /domain | select-string 'Password expires' >> $Report #Obtain user information using net user, select only Password Expired
+Start-Sleep -Second 3 #Pause to let system gather information
 }
